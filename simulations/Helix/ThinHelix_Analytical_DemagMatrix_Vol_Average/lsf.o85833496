@@ -1,0 +1,138 @@
+Sender: LSF System <lsfadmin@a6319>
+Subject: Job 85833496: <matlab -nodisplay -r ThinHelix_Analytical_DemagMatrix_Vol_Average_1> Done
+
+Job <matlab -nodisplay -r ThinHelix_Analytical_DemagMatrix_Vol_Average_1> was submitted from host <brutus4> by user <mheusser> in cluster <brutus>.
+Job was executed on host(s) <12*a6319>, in queue <pub.7d>, as user <mheusser> in cluster <brutus>.
+</cluster/home04/mavt/mheusser> was used as the home directory.
+</cluster/home04/mavt/mheusser/Calculations2> was used as the working directory.
+Started at Tue Apr  7 23:58:20 2015
+Results reported at Tue Apr  7 23:59:29 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+matlab -nodisplay -r ThinHelix_Analytical_DemagMatrix_Vol_Average_1
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   :     17.31 sec.
+    Max Memory :      1959 MB
+    Max Swap   :     28656 MB
+
+    Max Processes  :        31
+    Max Threads    :       244
+
+The output (if any) follows:
+
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2013 The MathWorks, Inc.
+                    R2013a (8.1.0.604) 64-bit (glnxa64)
+                             February 15, 2013
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting matlabpool using the 'local' profile ... [Warning: Found 6 pre-existing communicating job(s) created by matlabpool that
+are running. You can use 'matlabpool close force local' to remove all jobs
+created by matlabpool.] 
+[> In InteractiveClient>InteractiveClient.pRemoveOldJobs at 426
+  In InteractiveClient>InteractiveClient.start at 260
+  In MatlabpoolHelper>MatlabpoolHelper.doOpen at 363
+  In MatlabpoolHelper>MatlabpoolHelper.doMatlabpool at 137
+  In matlabpool at 139
+  In ThinHelix_Analytical_DemagMatrix_Vol_Average_1 at 16] 
+connected to 12 workers.
+
+thickness =
+
+   3.0000e-07
+
+Surface Average at s = 9.8736
+
+thickness =
+
+   3.0000e-07
+
+Surface Average at s = 5.3856
+
+thickness =
+
+   3.0000e-07
+
+Surface Average at s = 3.5904
+
+thickness =
+
+   3.0000e-07
+
+Surface Average at s = 11.6688
+
+thickness =
+
+   3.0000e-07
+
+Surface Average at s = 1.7952
+
+thickness =
+
+   3.0000e-07
+
+Surface Average at s = 10.7712
+
+thickness =
+
+   3.0000e-07
+
+Surface Average at s = 12.5664
+
+thickness =
+
+   3.0000e-07
+
+Surface Average at s = 8.0784
+
+thickness =
+
+   3.0000e-07
+
+Surface Average at s = 14.3616
+
+thickness =
+
+   3.0000e-07
+
+Surface Average at s = 8.976
+
+thickness =
+
+   3.0000e-07
+
+Surface Average at s = 13.464
+
+thickness =
+
+   3.0000e-07
+
+Surface Average at s = 7.1808
+Analyzing and transferring files to the workers ...
+{Error using DemagFactor_Wire_Analytical_SurfAv (line 36)
+An UndefinedFunction error was thrown on the workers for
+'DemagFactor_Wire_Analytical'.  This may be because the file containing
+'DemagFactor_Wire_Analytical' is not accessible on the workers.  Specify the
+required files to this MATLAB pool using the matlabpool addAttachedFiles
+command.  See the documentation for matlabpool for more details.
+
+Error in ThinHelix_Analytical_DemagMatrix_Vol_Average_1 (line 30)
+parfor i = 1 : length(s_i_vec)
+
+Caused by:
+    Undefined function 'DemagFactor_Wire_Analytical' for input arguments of
+    type 'double'.
+} 
+>> 
