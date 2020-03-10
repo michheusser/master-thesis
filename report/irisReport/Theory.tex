@@ -1,0 +1,416 @@
+%!TEX root = thesis.tex
+\section{Background Theory}
+\label{s:Theory}
+
+For the explanation of the theory used in this thesis, I based myself in \cite{Griffiths2005} and \cite{leuchtmann2005}.
+
+The theory of electromagnetism is fully described by the Maxwell Equations (with their initial and boundary conditions) and the Lorentz force law. 
+\begin{subequations}
+\begin{equation}\label{eq:mx1}
+\nabla \cdot \textbf{E} = \frac{\rho}{\epsilon_0}
+\end{equation}
+\begin{equation}\label{eq:mx2}
+\nabla \times \textbf{E} = -\frac{\partial\textbf{B}}{\partial{t}}
+\end{equation}
+\begin{equation}\label{eq:mx3}
+\nabla \cdot \textbf{B} = 0
+\end{equation}
+\begin{equation}\label{eq:mx4}
+\nabla \times \textbf{B} = \mu_0(\textbf{J} + \epsilon_0\frac{\partial\textbf{E}}{\partial t})
+\end{equation}
+\end{subequations}
+
+and
+
+\begin{equation}\label{eq:lorentz}
+\textbf{F} = Q(\textbf{E}+\textbf{v}\times\textbf{B})
+\end{equation}
+
+Although the interest in this thesis is only to analyze magnetic properties, I'll explain the analogies to the electrical properties since the mathematics in magnetostatics and electrostatics are very similar and much more intuitive in the latter.\\
+
+I will  clarify the assumptions taken (macroscopic fields) and the effect of materials on the magnetic and electric fields.
+
+\subsection{Electrostatics}
+
+In the field of electrostatics, there are by definition no moving charges.  Equations (\ref{eq:mx1}) and (\ref{eq:mx4}) simplify then to (we're only interested in electric fields):
+
+\begin{subequations}
+\begin{equation}\label{eq:mx1st}
+\nabla \cdot \textbf{E} = \frac{\rho}{\epsilon_0}
+\end{equation}
+\begin{equation}\label{eq:mx2st}
+\nabla \times \textbf{E} = 0
+\end{equation}
+\end{subequations}
+with the boundary condition:
+\begin{equation}\label{eq:mx12stbc}
+\lim_{||\textbf{r}||  \rightarrow \infty} \textbf{E} =0
+\end{equation}
+
+This formulation describes the electrical field in any situation (macroscopic or microscopic).\\
+
+Equation (\ref{eq:mx1st}) states that the source of an electrical field is a charge. Since this is a differential description, the charge has to be given as a charge volume density $\rho$. This doesn't necessarily make the assumption, that the charges are rather spread as a continuum over space. We can still construct a discrete microscopic model (e.g. a crystal) by using Dirac delta functions to represent point charges.\\
+
+Equation (\ref{eq:mx2st}) gives the property of $\textbf{E}$ being a conservative vector field. In other words since the following holds:
+
+\begin{equation}
+\nabla\times(-\nabla\phi) = -\nabla\times\nabla\phi =0 \qquad \forall \phi
+\end{equation}
+
+equation (\ref{eq:mx2st}) states that there exists in fact a scalar function $\phi$ such that:
+
+\begin{equation}
+\textbf{E} = -\nabla\phi
+\end{equation}
+
+This function will be called "electric potential function"  and will make some problems easier to solve, since we only have to find the potential function in order to have all the information regarding the electrical field. Since the electrical field is essentially a force (per charge) field, the potential function will have a nice physical meaning, namely energy (per charge).
+
+\subsubsection{Influence of Materials}
+
+Theoretically, to obtain the electrical field in the space nothing else is needed than equations (\ref{eq:mx1st}), (\ref{eq:mx2st}) and (\ref{eq:mx12stbc}). However when dealing with real materials, the complexity of the problem increases dramatically needing a mathematical model that allows us to deal with it more easily. This is the case for non-conducting materials (also called dielectric materials).\\
+
+We have learned that only charges have an effect on the electrical field. Although an uncharged electric material is made of atoms, which have negatively charged electrons and positively charged protons, the material itself won't produce any net electrical field since the charges' individual electrical fields cancel each other out. However, when said material is put inside of an existing electrical field, the charges inside of the atoms are pushed out of their positions such that their electrical fields don't cancel each other out and an actual contribution to the total electrical field is created. This shifting effect is called polarization and is characterized by the dipole moment $\textbf{p} = q\textbf{d}$, which has the information about the charge $q$ as well as the shift (and its direction) $\textbf{d}$.\\
+
+In the end, this dipole moment is the one that is directly connected to the force and torque acting on the analysed body (in this case an atom) in the following way:
+\begin{subequations}
+\begin{equation}\label{eq:elecdiptorque}
+\textbf{T}_\text{elec} = \textbf{p}\times\textbf{E}
+\end{equation}
+\begin{equation}\label{eq:elecdiptorque}
+\textbf{F}_\text{elec} = (\textbf{p}\cdot\nabla)\textbf{E}
+\end{equation}
+\end{subequations}
+
+However, we're interested in using a macroscopic model that doesn't require us to deal the dipole moment of every polarized atom. For this we define a new macroscopic variable, that describes the dipole density assuming we're at a continuum, called polarization $\textbf{P}$. With:
+
+\begin{equation}
+\int\limits_V \textbf{P} \;\mathrm{d}^3r = \textbf{p}
+\end{equation}
+
+Since we're in a macroscopic continuum and the shifting of the charges $\textbf{d}$ is very small, we can use the potential generated of a dipole $\textbf{p}$ (taken as a point at the origin)
+
+\begin{equation}
+\phi_{dip}(\textbf{r}) = \frac{1}{4\pi\epsilon_0} \frac{\textbf{r}\cdot\textbf{p}}{r^3}
+\end{equation} 
+
+and use its relation to the polarization $\textbf{P}$:
+
+\begin{equation}\label{eq:dipolpot}
+ \phi(\textbf{r})=\frac{1}{4\pi\epsilon_0}\int\limits_V \frac{(\textbf{r}-\textbf{r}')}{|\textbf{r}-\textbf{r}'|^3}\cdot\textbf{P}(\textbf{r}')\; \mathrm{d}^3r'
+\end{equation} 
+
+using mathematical manipulations we arrive at the following:
+
+\begin{equation}\label{eq:dipolpotexp}
+ \phi(\textbf{r}) = \frac{1}{4\pi\epsilon_0} \oint\limits_{\partial V} \frac{1}{|\textbf{r}-\textbf{r}'|}(\textbf{P}\cdot \textbf{n}')\;\mathrm{d}^2r' - \frac{1}{4\pi\epsilon_0} \int\limits_V \frac{1}{|\textbf{r}-\textbf{r}'|}(\nabla'\cdot\textbf{P})\;\mathrm{d}^3r'
+\end{equation} 
+
+After this result, we see that this potential has exactly the same structure as the potential of a surface charge $\sigma_b := \textbf{P}\cdot\textbf{n}$ and volume charge $\rho_b := -\nabla\cdot\textbf{P}$. Which means that the electrical field of a polarized object is the same as the produced by both charge densities $\sigma_b$ and $\rho_b$. This is a huge step in simplifying our model, since it means that once we find out the polarization $\textbf{P}$ we can find $\sigma_b$ and $\rho_b$ (which we will call, bound charges) and treat them as if they we're normal charges.\\
+
+Of course the next question is, how to find the polarization. Since this is material dependent, I'll address it after we finish setting up our mathematical model.\\
+
+We have arrived to the point were we can differentiate between two kinds of charges, free charges and bound charges, due to polarization. The total charge $\rho$ will be the sum of both:
+
+\begin{equation}
+\rho = \rho_b + \rho_f
+\end{equation}
+
+The bound charge is given by the divergence of the polarization:
+
+\begin{equation}
+\rho_b = -\nabla\cdot\textbf{P}
+\end{equation}
+
+Inserting this in the Maxwell equation (\ref{eq:mx1}) we get:
+
+\begin{equation}
+\epsilon_0\nabla \cdot \textbf{E} = -\nabla\cdot\textbf{P} + \rho_f \nonumber
+\end{equation}
+and now we define the electric displacement $\textbf{D}$:
+\begin{equation}\label{eq:displ}
+\nabla \cdot\underbrace{(\epsilon_0 \textbf{E} + \textbf{P})}_{\textbf{D}:=} = \rho_f 
+\end{equation}
+such that:
+\begin{equation}
+\nabla \cdot\textbf{D}= \rho_f \nonumber
+\end{equation}
+
+The electric displacement is convenient construct since it allows us to solve the problem for any given material, when the free charges are given. Solving this is usually the hardest part. After this, only the relation between how the polarization is created by the electric field is needed in order to find the electrical field in our problem. For example, in the case of linear dielectrics, the polarization created by the electric field acting on a material is the following:\\
+
+\begin{equation}\label{eq:lineardielec}
+\textbf{P} = \epsilon_0\chi_e\textbf{E}
+\end{equation}
+
+The constant $\chi_e$ is called the electric susceptibility and it depends on the microscopic structure of the substance.\\
+
+Now that we have this relation, we can use it in our model for the electric displacement and complete it for linear dielectrics:\\
+
+\begin{equation}
+\textbf{D} = \epsilon_0\textbf{E} + \textbf{P} = \epsilon_0\textbf{E} + \epsilon_0\chi_e\textbf{E} = \epsilon_0\underbrace{(1 +\chi_e)}_{\epsilon_r:=}\textbf{E} =  \underbrace{\epsilon_0\epsilon_r}_{\epsilon:=}\textbf{E} \nonumber
+\end{equation}
+
+\begin{equation}\label{eq:lindielDE}
+\textbf{D} =\epsilon \textbf{E}
+\end{equation}
+
+Where $\epsilon$ is called permittivity of the material and $\epsilon_r$ the dielectric constant of the material.\\
+
+In other words to solve a problem involving dielectrics, one may calculate the displacement $\textbf{D}$ first over the whole space (which should be continuous) with knowledge only about the free charges. Up until here, no material properties are considered, which makes the problem much easier to solve in terms of continuity. \\
+
+When the polarization model is known and, in this case, linear, calculating the electric field $\textbf{E}$, one has to use the derived model (\ref{eq:lindielDE}) which only differs by a constant (which is different on each material!).\\
+
+There exist materials called ferroelectric materials, that show a nonlinear polarization for a certain applied field. The name ferroelectric is given as a reference to ferromagnetic materials which show the same behaviour in terms of magnetization in response to an applied magnetic field. \\
+
+\subsection{Magnetostatics}
+
+Now that we understood the approach on polarization, it should be much easier to understand the principles and mathematical constructs of magnetostatics and magnetization. As we did for electrostatics, we will simplify the Maxwell equations (\ref{eq:mx3}) and (\ref{eq:mx4}) to:
+
+\begin{subequations}
+\begin{equation}\label{eq:mx3st}
+\nabla \cdot \textbf{B} = 0
+\end{equation}
+\begin{equation}\label{eq:mx4st}
+\nabla \times \textbf{B} = \mu_0\textbf{J}
+\end{equation}
+\end{subequations}
+
+and
+
+\begin{equation}\label{eq:mx34stbc}
+\lim_{||\textbf{r}||  \rightarrow \infty} \textbf{B} =0
+\end{equation}
+
+
+I'd like to discuss a little the mathematical properties of the magnetic field $\textbf{B}$. Since the divergence free property is always valid, not only for magnetostatics, it tells us, that the field lines will always be closed and won't be "appearing" out of a certain point or "monopole" (which is the case for electric field lines growing from a charge, an electric monopole). In other words, the divergence free property dictates that there exist no magnetic monopoles. The divergence free field may remind us of the continuity equation of an incompressible fluid. Since a fluid cannot be created or destroyed, the field lines have to be closed if considering the whole space.\\
+
+Since, in general, $\textbf{J}$ is nonzero, we cannot define a scalar potential function as we did for the electrostatics case. Since the magnetic field is divergence free, tough, the following holds:
+
+\begin{equation}
+\nabla\cdot(\nabla\times\textbf{A})  =0 \qquad \forall \textbf{A}
+\end{equation}
+
+A vector field $\textbf{A}$ then exists such that:
+
+\begin{equation}
+\textbf{B} = \nabla \times \textbf{A}
+\end{equation}
+
+Again, having this function will make it easier to solve our problems. Unfortunately there is no clear physical interpretation of this variable.\\
+
+\subsubsection{Influence of Materials}
+
+Anologously to the electrical fields, introducing materials to our scenery makes the problem more complicated. A dielectric material has charges that have an effect on the electric field. When we introduce a magnetic material, the small currents in their particles/atoms will have an effect on the magnetic field. We will therefore try to develop a model that helps us deal with this kind of problems.\\
+
+In dielectrics, we defined polarization as the shift of charges inside of the particles (atoms) of our material. In magnetic materials we can induce currents around their particles when a magnetic field is present. Contrary to the easy concept of polarization, there is a wide range and types of magnetic materials that react very differently to the magnetic field. However we can just think of "magnetization" as a sort of induced current inside the particles of a magnetic material as a cause of the magnetic field acting on it. The direction of this magnetization will be discussed in the end.\\
+
+We can now continue with our analogy. We will define now a magnetic dipole moment $\textbf{m} = \textbf{r} \times \textbf{j} $, where $\textbf{r}$ is the radius of the circle the current is rotating at and $\textbf{j}$ the current itself.  The magnetic dipole moment is the vector that shows how that atom is magnetized (or aligned) analogously to the electric dipole moment which showed how the particle was polarized.\\
+
+Again, we're talking here about a single particle. But for practical purposes, we're much more interested about the dipole that create all the atoms in a magnetic body, since it is the magnetic dipole that creates the force and torque on the body:
+
+\begin{subequations}
+\begin{equation}\label{eq:magdiptorque}
+\textbf{T}_\text{mag} = \textbf{m}\times\textbf{B}
+\end{equation}
+\begin{equation}\label{eq:magdiptorque}
+\textbf{F}_\text{mag} = (\textbf{m}\cdot\nabla)\textbf{B}
+\end{equation}
+\end{subequations}
+
+As before, we don't want to sum up the effect of all particles or atoms to calculate the magnetic dipole moment of a whole body but rather define a continuous magnetic dipole moment density function $\textbf{M}$, also known as magnetization, that we can use in our integrals over the body. The following holds:
+
+\begin{equation}
+\int\limits_V \textbf{M} \;\mathrm{d}^3r = \textbf{m}
+\end{equation}
+
+Analogously to the polarization we will use the vector potential $\textbf{A}_\text{dip}$ of a magnetic dipole taken as a point at the origin and combine it with the definition of the magnetization $\textbf{M}$.\\
+ 
+\begin{equation}
+\textbf{A}_\text{dip}(\textbf{r}) = \frac{\mu_0}{4\pi} \frac{\textbf{m}\times\textbf{r}}{r^3}
+\end{equation}
+
+and when $\textbf{M}$ is known:
+\begin{equation}
+\textbf{A}(\textbf{r}) = \frac{\mu_0}{4\pi}\int\limits_V \textbf{M}(\textbf{r}')\times\frac{(\textbf{r}-\textbf{r}')}{|\textbf{r}-\textbf{r}'|^3}\; \mathrm{d^3r'}
+\end{equation}
+
+which after some manipulations can be written in the following form:
+
+\begin{equation}
+ \textbf{A}(\textbf{r}) = \frac{\mu_0}{4\pi} \oint\limits_{\partial V} \frac{1}{|\textbf{r}-\textbf{r}'|}(\textbf{M}\times \textbf{n})\;\mathrm{d}^2r' + \frac{\mu_0}{4\pi} \int\limits_V \frac{1}{|\textbf{r}-\textbf{r}'|}(\nabla'\times\textbf{M})\;\mathrm{d}^3r'
+\end{equation} 
+
+The structure of this integral is the same as the one of the vector potential of a volume current $\textbf{J}_b :=\nabla \times \textbf{M}$ and the vector potential of a surface current $\textbf{K}_b := \textbf{M} \times \textbf{n}$ which means that the magnetic field of a magnetized object is the same as if the volume current $\textbf{K}_b$ and surface current $\textbf{J}_b$ were present. We will call these, the bound currents.\\
+
+Now we arrive at the moment we're we expand our model and differentiate between free and bound currents. The total current $\textbf{J}$ will be:
+
+\begin{equation}
+\textbf{J} = \textbf{J}_b + \textbf{J}_f
+\end{equation}
+
+Inserting this in \label{eq:mx4st} and using the definition of $\textbf{J}_b = \nabla \times \textbf{M}$ we get
+
+\begin{equation}
+\frac{1}{\mu_0}(\nabla\times\textbf{B}) = \nabla \times \textbf{M} + \textbf{J}_f 
+\end{equation}
+
+and now we can define a new variable:
+
+\begin{equation}\label{eq:defH}
+\nabla\times\underbrace{(\frac{1}{\mu_0}\textbf{B}-\textbf{M})}_{\textbf{H}:=} =  \textbf{J}_f 
+\end{equation}
+
+and now:
+\begin{equation}\label{eq:curlH}
+\nabla\times\textbf{H}=  \textbf{J}_f 
+\end{equation}
+
+The same as the electric displacement, the $\textbf{H}$ field, called auxiliary magnetic field, will contain all the information about our problem taking only in consideration the free currents. We can then calculate the auxiliary magnetic field and after knowing the relation of how the magnetization is created we can determine the magnetic field in each part of the space.\\
+
+As it was in the case of polarization, once the displacement $\textbf{D}$ is calculated, there is only the relation between $\textbf{E}$ and $\textbf{P}$ missing to see the missing relations between all three variables. In the case of magnetization, one can calculate the field $\textbf{H}$ and then find a relation between two of the three variables in question ($\textbf{H}$, $\textbf{B}$ and $\textbf{M}$). \\
+
+
+In the case of linear magnetic materials, the missing relation, that is given by the material is not between $\textbf{M}$ and $\textbf{H}$ and not  $\textbf{M}$ and $\textbf{B}$ (which was the case of their analog case in linear dielectrics, where the linearity was given between $\textbf{P}$ and $\textbf{E}$):
+
+\begin{equation}\label{eq:maglin}
+\textbf{M} = \chi_m \textbf{H}
+\end{equation}
+
+Here the variable $\chi_m$ is called the magnetic susceptibility.\\
+
+Now we can complete our model and see the relation between $\textbf{H}$ and $\textbf{B}$, which is what we want in the end.\\
+
+we use eq. (\ref{eq:maglin}) and the definition of $\textbf{H}$ made at (\ref{eq:defH}):
+
+\begin{equation}
+\textbf{H} = \frac{1}{\mu_0}\textbf{B} - \textbf{M}  = \frac{1}{\mu_0}\textbf{B} - \chi_m\textbf{M} 
+\end{equation}
+
+which can be arranged to:
+\begin{equation}
+\textbf{B} = \underbrace{\mu_0(1+\chi_m)}_{\mu:=}\textbf{H}
+\end{equation}
+
+Where our new variable $\mu$ is called the permeability of the material.
+
+
+\subsubsection{Further simplifications}
+Now that we have been able to distinguish between the bound $\textbf{J}_b$ and the free current $\textbf{J}_f$, we can further simplify our model. From now on, we'll be dealing with problems were no free currents are present. Equation \ref{eq:curlH} now simplifies to:
+
+\begin{equation}
+\nabla\times\textbf{H}=  0 
+\end{equation}
+
+which allows us to define a scalar potential function $\phi$ such that:
+
+\begin{equation}\label{eq:magscalarpot}
+\textbf{H} =- \nabla\psi
+\end{equation}
+
+also it is important to note that:
+
+\begin{equation}
+\nabla\cdot\textbf{H} = \nabla\cdot(\frac{1}{\mu_0}\textbf{B} - \textbf{M}) = \frac{1}{\mu_0}\underbrace{\nabla\cdot\textbf{B}}_{=0} - \nabla\cdot\textbf{M} =-\nabla\cdot\textbf{M}
+\end{equation}
+
+
+Now we can summarize our fundamental equations. After having defined the $\textbf{H}$ field we're going to work from now on only with this field and its relation to magnetization. Specially since a lot of literature prefers to work with this and not with $\textbf{B}$. Our equations are:
+
+\begin{subequations}\label{eq:mxH}
+\begin{equation}\label{eq:mx4H}
+\nabla\times\textbf{H}=  0 \quad\Leftrightarrow \quad \textbf{H} =- \nabla\psi
+\end{equation}
+\begin{equation}\label{eq:mx3H}
+\nabla\cdot\textbf{H} = -\nabla\cdot\textbf{M}
+\end{equation}
+\begin{equation}\label{eq:mx34Hbc}
+\lim_{||\textbf{r}||  \rightarrow \infty} \textbf{H} =0
+\end{equation}
+\begin{equation}\label{eq:funMH}
+\textbf{M} = \textbf{f}(\textbf{H})
+\end{equation}
+\end{subequations}
+
+Equations (\ref{eq:mx3H}) and (\ref{eq:mx4H}) are the simplified Maxwell Equations for magnetism and (\ref{eq:funMH}) states the relation of how the material magnetizes depending on the H-field. The last function is dictated by the type of material we're dealing with. We showed before, that for linear magnetic materials the relation is given by (\ref{eq:maglin}). Later in this work, we will show how ferromagnetism is modeled and how this translates to said function.\\
+
+It is importanto to notice that since we're dealing with a finite magnetic body, the following characteristic for (\ref{eq:funMH}) holds: 
+\begin{equation}\label{eq:inftyM}
+\lim_{||\textbf{r}||  \rightarrow \infty} \textbf{M} =0
+\end{equation}
+
+Equation (\ref{eq:mx4H}) lets us define a scalar potential and equation (\ref{eq:mx34Hbc}) is the boundary condition to (\ref{eq:mx3H}). Together with (\ref{eq:funMH}) the partial differential equation can be solved to determine $\textbf{H}$, $\textbf{M}$ and finally $\textbf{B}$ through the definition of the H-field: $\textbf{H} := \frac{1}{\mu_0}\textbf{B} - \textbf{M}$.
+
+\subsubsection{General solutions}
+
+Now that we have our environment set-up, we want to find the solutions for (\ref{eq:mx3H}-\ref{eq:funMH}). We want to approach this first by assuming a given magnetization $\textbf{M}$. To solve this problem we will use the formulation through the scalar potential (\ref{eq:magscalarpot}) derived through equation ((\ref{eq:mx4H}) and insert it in (\ref{eq:mx3H}) giving:
+
+\begin{equation}
+\nabla^2\psi = \nabla\cdot\textbf{M}
+\end{equation}
+
+The solution to this problem is:
+
+\begin{equation}\label{eq:potmagM}
+\psi(\textbf{r}) = -\frac{1}{4\pi}\int\limits_{R^3}\frac{\nabla'\cdot\textbf{M}(\textbf{r}')}{|\textbf{r}-\textbf{r}'|^3}\;\mathrm{d}^3r'
+\end{equation}
+
+which can be simplified\footnote{The solution has the same structure as eq. (\ref{eq:dipolpot}) and can be expanded similarly to (\ref{eq:dipolpotexp}) using Gauss' Theorem and integration by parts. But since we're integrating over the whole space $R^3$, the characteristic (\ref{eq:inftyM}) makes the surface integral disappear. } to:
+
+\begin{equation}\label{eq:potmagMsimp}
+\psi(\textbf{r}) = -\frac{1}{4\pi}\int\limits_{R^3}\frac{\textbf{r}-\textbf{r}'}{|\textbf{r}-\textbf{r}'|^3}\textbf{M}(\textbf{r}')\;\mathrm{d}^3r'
+\end{equation}
+
+which has the same structure as equation (\ref{eq:dipolpot}). It makes sense since we're integrating through the potential of all magnetic dipoles. To find the field in terms of magnetization, we have to take the divergence of the potential function\footnote{We want to make the reader aware of the fact that $\nabla$ is the derivative in respect to $\textbf{r}$ whereas $\nabla'$ is the derivative in respect to $\textbf{r}'$. }:
+
+\begin{subequations}
+\begin{equation}\label{eq:HfieldofM}
+\textbf{H}(\textbf{r}) =- \nabla\psi = \frac{1}{4\pi}\nabla\int\limits_{R^3}\frac{\textbf{r}-\textbf{r}'}{|\textbf{r}-\textbf{r}'|^3}\cdot\textbf{M}(\textbf{r}')\;\mathrm{d}^3r'
+\end{equation}
+\begin{equation}\label{eq:HfieldofMsimp1}
+= \frac{1}{4\pi}\int\limits_{R^3}\nabla\left(\frac{\textbf{r}-\textbf{r}'}{|\textbf{r}-\textbf{r}'|^3}\cdot\textbf{M}(\textbf{r}')\right)\;\mathrm{d}^3r'
+\end{equation}
+\begin{equation}\label{eq:HfieldofMsimp2}
+= \frac{1}{4\pi}\int\limits_{R^3}\frac{1}{|\textbf{r}-\textbf{r}'|^3}\left(I-\frac{3}{|\textbf{r}-\textbf{r}'|^2}(\textbf{r}-\textbf{r}')(\textbf{r}-\textbf{r}')^T\right)\textbf{M}(\textbf{r}')\;\mathrm{d}^3r'
+\end{equation}
+\end{subequations}
+
+
+
+\subsection{The Demagnetization Field}
+
+%BOOK: FERROMAGNETICS, introduction to magnetic materials, modern magnetic materials (o'haley)
+
+Previously we derived the H-Field created by a certain magnetized body with magnetization $\textbf{M}(\textbf{r})$ with no other currents or external magnetic fields. Said field is often called in literature the "Demagnetization Field" because is the field that diminishes the H-Field that would create the magnetization.\\
+
+In the previous case, the demagnetizing field is the actual total H-Field, but in the general case we could have other external H-fields. In this general case, the total H-Field differs from the demagnetization field. Therefore we will define it in the following way\footnote{This is an alternate formulation to the solution, \ref{eq:HfieldofMsimp1} (derived in the previous Section). See Appendix \ref{s:Nmanipulation} for the manipulations in order to bring it to this form}:
+
+
+\begin{equation}
+\textbf{H}_d(\textbf{r})  = - \frac{1}{4\pi}\int\limits_{\partial V}\left(\textbf{n}(\textbf{r}')\frac{(\textbf{r}'-\textbf{r})^T}{|\textbf{r}'-\textbf{r}|^3}\right)\textbf{M}(\textbf{r}')\;\mathrm{d}^3r'
+\end{equation}
+
+To avoid the cumbersome integral notation we will define an integral matrix-operator $\mathcal{N}(\textbf{r},\textbf{M}(\cdot))$  such that:
+
+\begin{equation}
+ \mathcal{N}(\textbf{r},\textbf{M}) : = \frac{1}{4\pi}\int\limits_{\partial V}\left(\textbf{n}(\textbf{r}')\frac{(\textbf{r}'-\textbf{r})^T}{|\textbf{r}'-\textbf{r}|^3}\right)\textbf{M}(\textbf{r}')\;\mathrm{d}^3r'
+\end{equation}
+
+So the following holds:
+
+\begin{equation}
+\textbf{H}_d(\textbf{r}) = - \mathcal{N}(\textbf{r},\textbf{M})
+\end{equation}
+
+
+\subsection{The Applied Field}
+
+We are dealing with a magnetizable body (the helices) that act under the influence of an external  uniform applied field that is constant over the time: 
+$\textbf{H}_\text{app}$. We will use the solution obtained and superpose the applied field.  
+
+\begin{subequations}
+\begin{equation}
+\textbf{H}(\textbf{r}) = \textbf{H}_d(\textbf{r})   + \textbf{H}_\text{app}
+\end{equation}
+\begin{equation}
+\textbf{H}(\textbf{r}) = - \mathcal{N}(\textbf{r},\textbf{M}) + \textbf{H}_\text{app}
+\end{equation}
+\end{subequations}
